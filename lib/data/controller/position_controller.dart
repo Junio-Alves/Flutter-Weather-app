@@ -5,9 +5,6 @@ class PositionController {
   double long = 0.0;
   String error = '';
 
-  getLat() => lat;
-  getLong() => long;
-
   PositionController() {
     getPosition();
   }

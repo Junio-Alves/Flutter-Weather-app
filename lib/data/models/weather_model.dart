@@ -23,7 +23,7 @@ class WeatherModel {
       date: map['results']['date'].toString(),
       time: map['results']['time'].toString(),
       description: map['results']['description'].toString(),
-      currently: map['results']['currently:'].toString(),
+      currently: map['results']['currently'].toString(),
       city: map['results']['city'].toString(),
       humidity: map['results']['humidity:'].toString(),
     );

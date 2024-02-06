@@ -12,7 +12,8 @@ class WeatherRepository implements IWeatherRepository {
   final PositionController positionController;
   final apiKey = 'b0988621';
 
-  WeatherRepository(this.positionController, {required this.client});
+  WeatherRepository({required this.positionController, required this.client});
+
   @override
   Future<WeatherModel> getWeather() async {
     final response = await client.get(

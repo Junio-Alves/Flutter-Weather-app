@@ -5,14 +5,17 @@ void main() {
   runApp(const MyApp());
 }
 
+Color color = Colors.blue;
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: const HomePage(),
+      theme: ThemeData(scaffoldBackgroundColor: color),
     );
   }
 }
