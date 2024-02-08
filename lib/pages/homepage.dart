@@ -3,7 +3,8 @@ import 'package:weather_app/data/controller/position_controller.dart';
 import 'package:weather_app/data/http/http_client.dart';
 import 'package:weather_app/data/models/weather_model.dart';
 import 'package:weather_app/data/repositories/weather_repository.dart';
-import 'package:weather_app/main.dart';
+import 'package:weather_app/pages/widgets/backgroundcolor.dart';
+import 'package:weather_app/pages/widgets/imageIcon.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,14 +24,16 @@ class _HomePageState extends State<HomePage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
+            return Center(child: Text(snapshot.error.toString()));
           } else {
             WeatherModel weather = snapshot.data!;
-            if (weather.currently == "noite") {
-              color = Colors.purple;
-            } else {
-              color = Colors.blue;
+
+            if (weather.currently == "dia") {
+              backgrouncolor(Colors.blue);
+            } else if (weather.currently == "noite") {
+              backgrouncolor(const Color.fromARGB(255, 36, 46, 97));
             }
+
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -70,25 +73,59 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      imageIcon(weather),
-                      height: 250,
-                      width: 250,
+                      imageIcon(weather.currently),
+                      height: 200,
+                      width: 200,
                     )
                   ],
                 ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(30.0),
+                    child: Container(
+                      height: 100,
+                      constraints: const BoxConstraints(
+                        maxHeight: 300,
+                        maxWidth: 400,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.3),
+                          borderRadius: BorderRadius.circular(30)),
+                      child: ListView.builder(
+                          itemCount: weather.forecast.length,
+                          itemBuilder: (context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    imageIcon(
+                                        weather.forecast[index]["condition"]),
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    '${weather.forecast[index]["weekday"]} ${weather.forecast[index]["date"]}',
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  )
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                )
               ],
             );
           }
         }),
       ),
     );
-  }
-
-  String imageIcon(WeatherModel weather) {
-    if (weather.currently == "noite") {
-      return 'assets/icons/clear_night.png';
-    } else {
-      return 'assets/icons/clear_day.png';
-    }
   }
 }

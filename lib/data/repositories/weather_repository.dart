@@ -16,6 +16,9 @@ class WeatherRepository implements IWeatherRepository {
 
   @override
   Future<WeatherModel> getWeather() async {
+    await positionController.getPosition();
+    print(
+        'https://api.hgbrasil.com/weather?key=$apiKey&lat=${positionController.lat}&lon=${positionController.long}&user_ip=remote');
     final response = await client.get(
         url:
             'https://api.hgbrasil.com/weather?key=$apiKey&lat=${positionController.lat}&lon=${positionController.long}&user_ip=remote');

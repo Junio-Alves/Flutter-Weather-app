@@ -6,16 +6,17 @@ class WeatherModel {
   String currently;
   String city;
   String humidity;
+  List<dynamic> forecast;
 
-  WeatherModel({
-    required this.temp,
-    required this.date,
-    required this.time,
-    required this.description,
-    required this.currently,
-    required this.city,
-    required this.humidity,
-  });
+  WeatherModel(
+      {required this.temp,
+      required this.date,
+      required this.time,
+      required this.description,
+      required this.currently,
+      required this.city,
+      required this.humidity,
+      required this.forecast});
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     return WeatherModel(
@@ -26,6 +27,7 @@ class WeatherModel {
       currently: map['results']['currently'].toString(),
       city: map['results']['city'].toString(),
       humidity: map['results']['humidity:'].toString(),
+      forecast: map['results']['forecast'],
     );
   }
 }

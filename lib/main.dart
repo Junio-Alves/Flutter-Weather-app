@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/pages/homepage.dart';
+import 'package:weather_app/pages/widgets/backgroundcolor.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-Color color = Colors.blue;
+Color? color;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
