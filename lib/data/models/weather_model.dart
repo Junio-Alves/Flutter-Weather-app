@@ -20,14 +20,14 @@ class WeatherModel {
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     return WeatherModel(
-      temp: map['results']['temp'].toString(),
-      date: map['results']['date'].toString(),
-      time: map['results']['time'].toString(),
-      description: map['results']['description'].toString(),
-      currently: map['results']['currently'].toString(),
-      city: map['results']['city'].toString(),
-      humidity: map['results']['humidity:'].toString(),
-      forecast: map['results']['forecast'],
+      temp: map['temp'].toString(),
+      date: map['date'].toString(),
+      time: map['time'].toString(),
+      description: map['description'].toString(),
+      currently: map['currently'].toString(),
+      city: map['city'].toString(),
+      humidity: map['humidity:'].toString(),
+      forecast: map['forecast'],
     );
   }
 }

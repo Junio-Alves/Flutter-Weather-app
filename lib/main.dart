@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/data/provider/weather_providery.dart';
 import 'package:weather_app/pages/homepage.dart';
-import 'package:weather_app/pages/widgets/backgroundcolor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-      theme: ThemeData(scaffoldBackgroundColor: color),
+    return ChangeNotifierProvider(
+      create: ((context) => WeatherProvider()),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+        theme: ThemeData(scaffoldBackgroundColor: color),
+      ),
     );
   }
 }
