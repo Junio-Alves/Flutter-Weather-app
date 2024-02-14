@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:weather_app/data/models/weather_model.dart';
-import 'package:weather_app/data/provider/weather_providery.dart';
+import 'package:weather_app/data/provider/weather_provider.dart';
 import 'package:weather_app/pages/widgets/imageIcon.dart';
 import 'package:provider/provider.dart';
 
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         const SizedBox(
-          height: 150,
+          height: 50,
         ),
         Expanded(
           child: Padding(
